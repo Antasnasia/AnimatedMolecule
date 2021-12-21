@@ -1,0 +1,100 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+.wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+
+}
+.container {
+    width: 100%;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+.row-1, .row-2 {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    z-index: 2;
+}
+.row-3 {
+    width: 100%;
+    height: 100%;
+  
+position: absolute;
+display: flex;
+justify-content: space-evenly;
+z-index: 1;
+}
+.line {
+    height: calc(100% - 93px);
+    width: 2px;
+    background-color: black;
+    position: relative;
+    left: -17px;
+    top: 30px;
+    margin-left: 40px;
+    animation-name: anim-line;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count:infinite;
+}
+.circle {
+    border-radius: 50%;
+    position: relative;
+  
+    margin: 5px 0;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count:infinite;
+}
+.row-1 .circle {
+    width: 38px;
+    height: 38px;
+    background: linear-gradient(-27deg, #ff6060, #803030);
+//    margin: 0 32px;
+   
+   animation-name: anim-circle-first;
+   
+}
+.row-2 .circle {
+    width: (119px / 2);
+    height: (119px /2);
+    background: linear-gradient(-27deg, #607aff, #303d80);
+    
+    animation-name: anim-circle-second;
+   
+}
+
+@for $i from 1 to 30 {
+    .row-1 .circle:nth-child(#{$i}), 
+    .row-2 .circle:nth-child(#{$i}), 
+    .row-3 .line:nth-child(#{$i})
+     {
+        animation-delay: 0.1s *$i;
+    }
+}
+
+@keyframes anim-circle-first {
+   50% {
+        transform: translateY( 450px) scale(2);
+   }
+}
+@keyframes anim-circle-second {
+  
+    50% {
+        transform: translateY( -450px) scale(0.4);
+    }
+   
+}
+@keyframes anim-line {
+    50% {
+        transform: scale(0);
+    }
+}
